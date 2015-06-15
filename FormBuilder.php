@@ -709,8 +709,13 @@ class FormBuilder {
 	 */
 	public function submit($value = null, $options = array())
 	{
-		return $this->input('submit', null, $value, $options);
-	}
+        if ( ! array_key_exists('type', $options))
+        {
+            $options['type'] = 'submit';
+        }
+
+        return '<button'.$this->html->attributes($options).'>'.$value.'</button>';
+    }
 
 	/**
 	 * Create a button element.
